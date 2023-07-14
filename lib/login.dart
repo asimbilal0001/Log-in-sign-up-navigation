@@ -3,10 +3,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_login/Register.dart';
 import 'package:the_login/welcome.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String email = '';
+  TextEditingController emailC = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +51,8 @@ class LoginPage extends StatelessWidget {
                     Container(
                       width: 250,
                       child: TextField(
+                        controller: emailC,
+                        onChanged: (value) => email = emailC.text,
                         decoration: InputDecoration(
                           labelText: 'Email Address',
                           suffixIcon: Icon(
@@ -100,13 +108,15 @@ class LoginPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        child: TextButton(
-                          onPressed: () {
+                        child: InkWell(
+                          onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => WelcomePage(),
-                                ));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    WelcomePage2(email: email),
+                              ),
+                            );
                           },
                           child: Padding(
                             padding: EdgeInsets.all(12.0),

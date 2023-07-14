@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_login/welcome.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  String email = '';
 
   // This widget is the root of your application.
   @override
@@ -99,10 +106,12 @@ class RegisterPage extends StatelessWidget {
                         ),
                         child: TextButton(
                           onPressed: () {
+                            var email;
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => WelcomePage(),
+                                  builder: (context) =>
+                                      WelcomePage2(email: email),
                                 ));
                           },
                           child: Padding(
